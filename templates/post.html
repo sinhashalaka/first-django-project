@@ -1,13 +1,12 @@
 {% extends 'basefile.html' %}
 
 {% block shalaka %}
-     
-{% block title %}{{posts.title}}{% endblock %}
 <form action="/check/" method="get">
+<p><h1>Views: {{posts.views}}</h1></p>
 <div class="button">
-<input type = "submit" name="bt" value = "back"></input>
-        </div>
-    </form>
+<input type = "submit" name="bt" value = "home"></input>
+ </div>
+ </form>
         	<div class="titles"> 
         		<h1>{{posts.title}} </h1>
         </div>
@@ -16,5 +15,15 @@
         <p style = "color : black">{{posts.content}}</p>
 
     </div>
-
+  <!--  <form>
+   <div class = "comment">
+   	<p style = "color:white">Enter name:</p>
+   <input type = "text" name="name"></input><br>
+   <p style = "color:white">Enter email-id:</p>
+<input type="email" name="email"></input>
+<p style = "color:white">Comment:</p>
+<input type="text" name = "comment" ></input><br>
+<input type="submit" name="bt2" value="comment"></input>
+</div>
+</form>-->
 {% endblock %}

@@ -27,6 +27,7 @@ urlpatterns = [
     url(r'^check/$', views.check1 , name="homefile"),
     url(r'^contact/$',views.contact, name= "contact"),
     url(r'^articles/$',views.articles, name= "articles"),
+    url(r'^reach/$',views.reach, name= "reach"),
     url(r'^search/$',views.search),
 	url(r'(?P<slug>\S+)/$', views.post),
 

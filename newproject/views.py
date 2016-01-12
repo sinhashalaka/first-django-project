@@ -9,6 +9,8 @@ from django.shortcuts import get_object_or_404
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
+flag = 0
+
 def home(request):
     return render(request, 'file.html')
 
@@ -26,6 +28,7 @@ def check1(request):
 				adm = None
 			if (adm == None):
 				response = "Wrong username"
+
 			else:
 				if adm.password == passwd:
 			#response="yoyo"
@@ -51,13 +54,17 @@ def articles(request):
 	return render(request,'articles.html',{ 'data':data })
 
 def search(request):
-	error = False
-	if 'q' in request.GET:
-		q = request.GET['q']
-		if not q:
-			error = True
-		else:
-			data = Data.objects.filter(title__icontains=q)
-			return render(request, 'basefile.html',{'data': data, 'query': q})
-	return render(request, 'basefile.html',{'error': error})
+	query = request.GET.get('q')
+	if query:
+		flag = 1
+		data = Data.objects.filter(title__icontains = query)
+		return render(request,'list.html',{'data':data})
+	else :
+		response = "Enter your query"
+
+	return HttpResponse(response)
+
+def reach(request):
+	return render(request,'list.html')
+
 

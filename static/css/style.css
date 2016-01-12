@@ -80,11 +80,15 @@ page{
 
 .bodypart1 {
 	width:1000px;
-	height:auto;
+	height:500;
 	background-color:white;
 	border-radius:10px;
 	position:relative;
 	top:30px;
+}
+
+.bodypart1 h2{
+	color:black;
 }
 
 .bodypart .linkpart {
@@ -188,6 +192,13 @@ h1{
 	left:1000px;
 }
 
+.secbutton{
+	width:200px;
+	height:30px;
+	position: absolute;
+	left:0px;
+}
+
 .contact .image{
 	width:200px;
 	height:200px;
@@ -214,4 +225,20 @@ h1{
 	width:100px;
 	top:20px;
 	left:200px;
+}
+
+.comment{
+	width:100px;
+	height:10px;
+	background-color: rgb(6,36,63);
+	top:40px;
+	position: relative;
+}
+.bodypart2{
+	width:1000px;
+	height:auto;
+	background-color:white;
+	border-radius:10px;
+	position:relative;
+	top:30px;
 }
