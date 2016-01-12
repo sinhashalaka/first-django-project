@@ -1,0 +1,217 @@
+body{
+	background-color:rgb(6,36,63);
+}
+
+page{
+	width:1000px;
+	height:auto;
+}
+
+.header{
+	width:1000px;
+	height:100px;
+}
+
+.header h1{
+	color:white;
+	float:left;
+	position:relative;
+	top:20px;
+}
+
+.header h2{
+	color:white;
+	float:left;
+	position:relative;
+	top:0;
+}
+
+.header h3{
+	color:rgb(133,153,147);
+	float:left;
+	position:absolute;
+	top:60px;
+}
+
+.header .sublinks{
+	width:300px;
+	height:70px;
+	float:right;
+	border-style:groove;
+}
+
+.header .sublinks a{
+	color:white;
+	text-decoration:none;
+	position:relative;
+	top:20px;
+}
+
+.linkspart
+{
+	width:1000px;
+	height:40px;
+	background-color:white;
+	border-radius:10px;
+	margin-top:10px;
+}
+.linkspart  a{
+	color:rgb(133,153,147);
+	text-decoration:none;
+	font-size:35;
+	position:relative;
+	top:5px;
+}
+
+.linkspart a:hover{
+	color:white;
+	background-color:rgb(6,36,63);
+	border-radius:12px;
+}
+
+.bodypart {
+	width:1000px;
+	height:450px;
+	background-color:white;
+	border-radius:10px;
+	position:relative;
+	top:30px;
+}
+
+.bodypart1 {
+	width:1000px;
+	height:auto;
+	background-color:white;
+	border-radius:10px;
+	position:relative;
+	top:30px;
+}
+
+.bodypart .linkpart {
+	width:290px;
+	height:440px;
+	background-color:rgb(6,36,63);
+	border-radius:10px;
+	position:absolute;
+	top:5px;
+	left:5px;
+	
+}
+
+.bodypart .linkpart h2{
+	color:white;
+}
+
+.bodypart .linkpart .product {
+	width:280px;
+	height:370px;
+	background-color:white;
+	border-radius:10px;
+}
+
+.bodypart .contentpart {
+	width:390px;
+	height:440px;
+	background-color:rgb(6,36,63);
+	border-radius:10px;
+	position:absolute;
+	top:5px;
+	left:300px;
+}
+
+.bodypart .contentpart h2{
+	color:white;
+}
+
+.bodypart .contentpart .content {
+	width:380px;
+	position:relative;
+	top:5px;
+	height:365px;
+	background-color:white;
+	border-radius:10px;
+}
+
+.bodypart .gallerypart {
+	width: 300px;
+	height:440px;
+	background-color:rgb(6,36,63);
+	border-radius:10px;
+	position:absolute;
+	top:5px;
+	left:695px;
+}
+
+.bodypart .gallerypart h2{
+	color:white;
+}
+
+.bodypart .gallerypart .gall{
+	width:295px;
+	position:relative;
+	height:365px;
+	top:5px;
+	background-color:white;
+	border-radius:10px;
+}
+
+a{
+	color:white;
+	position:relative;
+	top:40px;
+	text-decoration:none;
+	font-size:120%
+}
+
+h1{
+	color:white;
+	text-align:center;
+	position:relative;
+	top:60px;
+}
+
+.contact{
+	width:1000px;
+	height:400px;
+	background-color:white;
+	position:absolute;
+	top:150px;
+	left:200px;
+	border-style:groove;
+	border-radius:10px;
+}
+
+.button{
+	width:200px;
+	height:30px;
+	position:absolute;
+	left:1000px;
+}
+
+.contact .image{
+	width:200px;
+	height:200px;
+	background-color:rgb(6,36,63);
+	position:absolute;
+	top:40px;
+	left:50px;
+}
+
+.home{
+	width:50px;
+	position:absolute;
+	top:60px;
+	right:200px;
+	color:white;
+}
+
+.pagination {
+	display: inline-block;
+    padding: 0;
+    margin: 0;
+}
+.titles{
+	width:100px;
+	top:20px;
+	left:200px;
+}

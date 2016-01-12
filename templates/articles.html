@@ -1,0 +1,15 @@
+{% extends 'basefile.html' %}
+{% block shalaka %}
+<div class = "bodypart1">
+  	<ul>
+	{% for d in data %}
+		<h2>
+        	<a style = "color : black"href="../{{ d.slug }}"> {{d.title}}</a>
+    	</h2>
+      	<br>
+
+    <p>Posted on <time datetime="{{d.created|date:"c"}}">{{d.created|date}}</time></p>
+    {% endfor %}
+</ul>
+</div>
+{% endblock %}

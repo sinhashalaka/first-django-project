@@ -1,0 +1,20 @@
+{% extends 'basefile.html' %}
+
+{% block shalaka %}
+     
+{% block title %}{{posts.title}}{% endblock %}
+<form action="/check/" method="get">
+<div class="button">
+<input type = "submit" name="bt" value = "back"></input>
+        </div>
+    </form>
+        	<div class="titles"> 
+        		<h1>{{posts.title}} </h1>
+        </div>
+        <div class = "bodypart">
+
+        <p style = "color : black">{{posts.content}}</p>
+
+    </div>
+
+{% endblock %}

@@ -1,0 +1,22 @@
+
+{% extends 'basefile.html' %}
+{% block shalaka %}
+
+<!--<h1 style = "color:white;">  SHALAKA SINHA</h1>-->
+
+<div class = "bodypart">
+<h3 style="padding: 10px 0px 5px 30px;">Recent Articles</h3>
+<ul>
+	{% for d in data|slice:":3" %}
+		<h2>
+                <a style = "color : black"href="../{{ d.slug }}"> {{d.title}}</a>
+    	</h2>
+      <br>
+
+            <p>{{post.content}}</p>
+            <p>Posted on <time datetime="{{d.created|date:"c"}}">{{d.created|date}}</time></p>
+    {% endfor %}
+</ul>
+</div>
+
+{% endblock %}
