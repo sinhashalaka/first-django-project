@@ -1,20 +1,37 @@
-<html>
+
 <head><title>Your Blog</title>
+
 <style type="text/css">
 body{
-	background-image:url("http://wallpapercave.com/wp/FOyu6CV.jpg")
+	background-color: white;
+	width:1000px;
+	height:auto;
 }
 </style>
-
+{% load static from staticfiles %}
+<link rel = "stylesheet" type = "text/css" href="{% static "css/style.css"%}"></link>
 </head>
 <body>
 
-<form action="/check/" method="get">
-username:
-<input type="text" name="username"><br>
-password:
-<input type="password" name="password"><br>
-<input type="submit" name="Login" value="check"><br>
+ <div class="file" > 
+	<form action="/check/" method="get">
+		<h2>username:</h2>
+		<div class = "align">
+		<input type="text" name="username"></input><br> <br>
+		</div>
+		<h2>password:</h2>
+		<div class="align">
+		<input type="password" name="password" ></input><br><br></p>
+		</div>
+		<div class = "align">
+		<input type="submit" name="Login" value="login"><br></input>
+		</div>
+		</form>
+		<form action="/register/" method="get">
+		<div class = "align">
+		<input type="submit" value="register"></input><br>
+	</div>
+	</form>
+	</div>
 
-</form>
 </body>

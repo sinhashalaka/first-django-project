@@ -22,8 +22,6 @@ class Data(models.Model):
         return self.title
         
     def get_absolute_url(self):
-        #import pdb
-        #pdb.set_trace()
         return reverse('views.post', kwargs={'slug':self.slug,},)
 
     def save(self , *args , **kwargs):

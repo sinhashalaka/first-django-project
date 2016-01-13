@@ -1,0 +1,33 @@
+<html>
+<head>
+<style type="text/css">
+body{
+	background-color: white;
+	width:1000px;
+	height:auto;
+}
+</style>
+{% load static from staticfiles %}
+<link rel = "stylesheet" type = "text/css" href="{% static "css/style.css"%}"></link>
+</head>
+<body>
+	<div class="file">
+	<form action="/create/" method="get">
+
+		<h2>Enter username : </h2>
+		<div class="align">
+		<input type="text" name="username" ></input><br><br>
+		</div>
+		<h2>Enter email : </h2>
+		<div class="align">
+		<input type="email" name="email" ></input><br><br>
+		</div>
+		<h2>Enter password : </h2>
+		<div class="align">
+		<input type="password" name="password" ></input><br><br>
+		<div class="align">
+		<input type="submit" value="signup"></input>
+	</form>
+</div>
+</body>
+</html>

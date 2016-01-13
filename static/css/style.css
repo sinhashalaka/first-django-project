@@ -7,6 +7,50 @@ page{
 	height:auto;
 }
 
+homepage{
+	background-color: white;
+	width:1000px;
+	height:auto;
+}
+
+.file{
+	border-radius: 10px;
+	position:relative;
+	width:400px;
+	height:300px;
+	top:250px;
+	left:450px;
+	background-color: white;
+}
+.titles{
+	width:100px;
+}
+
+.titles p{
+	font-size: 30px;
+}
+
+.file .align{
+	left:130px;
+	position: relative;
+}
+
+.file h2{
+	font-size: 20px;
+	font-family: "Times New Roman", Times, serif;
+	text-align: center;
+}
+
+.file p{
+	float: center;
+}
+
+.side{
+	float:right;
+	position:relative;
+	right:100px;
+}
+
 .header{
 	width:1000px;
 	height:100px;
@@ -58,7 +102,7 @@ page{
 .linkspart  a{
 	color:rgb(133,153,147);
 	text-decoration:none;
-	font-size:35;
+	font-size:25;
 	position:relative;
 	top:5px;
 }
@@ -71,11 +115,16 @@ page{
 
 .bodypart {
 	width:1000px;
-	height:450px;
+	height:550px;
 	background-color:white;
 	border-radius:10px;
 	position:relative;
 	top:30px;
+}
+
+.bodypart p{
+	font-size: 25px;
+	font-family: "Times New Roman", Times, serif;
 }
 
 .bodypart1 {

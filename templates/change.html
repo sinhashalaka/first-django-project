@@ -1,0 +1,36 @@
+<html>
+<head>
+<style type="text/css">
+body{
+	background-color: white;
+	width:1000px;
+	height:auto;
+}
+</style>
+{% load static from staticfiles %}
+<link rel = "stylesheet" type = "text/css" href="{% static "css/style.css"%}"></link>
+</head>
+<div class="file">
+<form action="/change/" method="get">
+	<h2>Enter username:</h2>
+	<div class="align">
+	<input type="text" name="username"></input><br>
+	</div>
+	<h2>Enter new password:</h2>
+	<div class="align">
+	<input type="password" name="newpasswd"></input><br>
+</div>
+	<div class="align">
+		<br>
+		<br>
+		<br>
+	<input type="submit" value="change password"></input>
+</div>
+</form>
+<form action="/check/" method="get">
+	<div class="align">
+	<input type="submit" value = "back"></input>
+</div>
+</form>
+</div>
+</html>

@@ -17,6 +17,8 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 from newproject.views import home
+# from django.core.urlresolvers import reverse
+
 import views
 # from views import check1
 # from views import post
@@ -27,6 +29,11 @@ urlpatterns = [
     url(r'^check/$', views.check1 , name="homefile"),
     url(r'^contact/$',views.contact, name= "contact"),
     url(r'^articles/$',views.articles, name= "articles"),
+    url(r'^register/$',views.register , name="register"),
+    url(r'^create/$',views.create),
+    url(r'^reachhome/$',views.reachhome,name="reachhome"),
+    url(r'^change1/$',views.change1,name="change1"),
+    url(r'^change/$',views.change, name="change"),
     url(r'^reach/$',views.reach, name= "reach"),
     url(r'^search/$',views.search),
 	url(r'(?P<slug>\S+)/$', views.post),
