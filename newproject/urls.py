@@ -17,11 +17,9 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 from newproject.views import home
-# from django.core.urlresolvers import reverse
-
+from django.contrib.auth.views import password_reset
 import views
-# from views import check1
-# from views import post
+
 
 urlpatterns = [
 	url(r'^$', home , name="home"),
@@ -31,11 +29,14 @@ urlpatterns = [
     url(r'^articles/$',views.articles, name= "articles"),
     url(r'^register/$',views.register , name="register"),
     url(r'^create/$',views.create),
+    url(r'^like_post/$',views.like_post,name="like_post"),
+    url(r'^forgot/$',views.forgot, name="forgot"),
+    url(r'^logout/$',views.logout , name="logout"),
     url(r'^reachhome/$',views.reachhome,name="reachhome"),
     url(r'^change1/$',views.change1,name="change1"),
     url(r'^change/$',views.change, name="change"),
+    url(r'^goback/$',views.goback,name="goback"),
     url(r'^reach/$',views.reach, name= "reach"),
     url(r'^search/$',views.search),
 	url(r'(?P<slug>\S+)/$', views.post),
-
 ]

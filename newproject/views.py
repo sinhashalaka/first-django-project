@@ -4,11 +4,15 @@ from django.template import Template , Context
 from django.shortcuts import render
 from blog.models import Admin 
 from blog.models import Data
+from blog.models import likes
 from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404
 from django.core.exceptions import ObjectDoesNotExist
-from django.contrib.auth import authenticate
+from django.contrib.auth import authenticate , login ,logout
+from django.contrib.auth.views import password_reset
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+
+post_title= []
 
 def home(request):
     return render(request, 'file.html')
@@ -20,7 +24,7 @@ def check1(request):
 	uname = request.GET.get('username')
 	passwd = request.GET.get('password')
 	user = authenticate(username=uname, password=passwd)
-	print user
+	login(request , user)
 	data = Data.objects.all()
 	if uname == None and passwd == None:
 		return render(request,'newfile.html',{ 'data':data })
@@ -34,8 +38,15 @@ def register(request):
 	return render(request,'register.html')
 	
 def post(request, slug):
+	global post_title
 	post = get_object_or_404(Data, slug=slug)
-	return render(request, 'post.html', {'posts':post})
+	post_title = post
+	l = likes.objects.filter(post = post, user = request.user)
+	if not l:
+		return render(request,'post.html',{'posts':post , 'x':"Like"})
+	else :
+		return render(request,'post.html',{'posts':post , 'x':"Unlike"})
+	return render(request, 'post.html', {'posts':post , 'x':"Like"})
 
 def contact(request):
 	return render(request,'contact.html')
@@ -88,4 +99,25 @@ def change1(request):
 def reach(request):
 	return render(request,'list.html')
 
+def logout(request):
+	logout(request)
 
+def goback(request):
+	data = Data.objects.all()
+	return render(request,'newfile.html',{ 'data':data })
+
+def forgot(request):
+	return render(request,'passwordreset.html')
+
+def like_post(request):
+	l = likes.objects.filter(user = request.user , post = post_title)
+	if not l:
+		post_title.number_likes += 1
+		like = likes.objects.create(user=request.user , post = post_title)
+		post_title.save()
+	else:
+		post_title.number_likes -= 1
+		like = likes.objects.filter(user=request.user , post = post_title)
+		like.delete()
+		post_title.save()
+	return post(request, post_title.slug)

@@ -1,6 +1,7 @@
 from __future__ import unicode_literals
 from django.core.urlresolvers import reverse
 from django.db import models
+from django.contrib.auth.models import User
 import views
 
 class Admin(models.Model):
@@ -16,6 +17,8 @@ class Data(models.Model):
     modified = models.DateField(auto_now=True)
     content = models.CharField(max_length=5000)
     slug = models.SlugField(unique=True, max_length = 200)
+    number_likes = models.IntegerField(default=0)
+    number_comments = models.IntegerField(default=0)
     views = models.IntegerField(default=0)
 
     def __str__(self):
@@ -33,3 +36,9 @@ class Data(models.Model):
         verbose_name = "Entry"
         verbose_name_plural="Entries"
         ordering=["-modified"]
+
+class likes(models.Model):
+    user = models.ForeignKey(User)
+    post = models.ForeignKey(Data)
+
+

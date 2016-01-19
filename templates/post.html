@@ -1,30 +1,20 @@
 {% extends 'basefile.html' %}
 
+
 {% block shalaka %}
-<div class = "side">
-  <h3>Hello! {{posts.username}}</h3>
-</div>
-<form action="/check/" method="get">
-<p style="color:white">Views: {{posts.views}}</p>
+<form action="/goback/" method="get">
 <div class="button">
 <input type = "submit" name="bt" value ="home"></input>
  </div>
  </form>
-         		<p style="color : white ;font-size:25px" >{{posts.title}} </p>        
+        <p style="color : white ;font-size:25px" >{{posts.title}} </p>        
         <div class = "bodypart">
-
         <p style = "color : black">{{posts.content}}</p>
+        </div>
+  <form action="/like_post/" method="get">
+  <div class = "button">
+  <input type= "submit" value={{x}} onclick="like_post" id="id1" >+ {{posts.number_likes}}</input>
+  </div>
+  </form>
 
-    </div>
-  <!--  <form>
-   <div class = "comment">
-   	<p style = "color:white">Enter name:</p>
-   <input type = "text" name="name"></input><br>
-   <p style = "color:white">Enter email-id:</p>
-<input type="email" name="email"></input>
-<p style = "color:white">Comment:</p>
-<input type="text" name = "comment" ></input><br>
-<input type="submit" name="bt2" value="comment"></input>
-</div>
-</form>-->
 {% endblock %}
