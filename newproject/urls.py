@@ -29,7 +29,7 @@ urlpatterns = [
     url(r'^articles/$',views.articles, name= "articles"),
     url(r'^register/$',views.register , name="register"),
     url(r'^create/$',views.create),
-    url(r'^like_post/$',views.like_post,name="like_post"),
+    url(r'^like/$',views.like , name="like"), 
     url(r'^forgot/$',views.forgot, name="forgot"),
     url(r'^logout/$',views.logout , name="logout"),
     url(r'^reachhome/$',views.reachhome,name="reachhome"),

@@ -11,6 +11,13 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth import authenticate , login ,logout
 from django.contrib.auth.views import password_reset
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.contrib.auth.decorators import login_required
+try:
+    from django.utils import simplejson as json
+except ImportError:
+    import json
+
+from django.views.decorators.http import require_POST
 
 post_title= []
 
@@ -109,15 +116,33 @@ def goback(request):
 def forgot(request):
 	return render(request,'passwordreset.html')
 
-def like_post(request):
-	l = likes.objects.filter(user = request.user , post = post_title)
-	if not l:
-		post_title.number_likes += 1
-		like = likes.objects.create(user=request.user , post = post_title)
-		post_title.save()
-	else:
-		post_title.number_likes -= 1
-		like = likes.objects.filter(user=request.user , post = post_title)
-		like.delete()
-		post_title.save()
-	return post(request, post_title.slug)
+# def like_post(request):
+# 	l = likes.objects.filter(user = request.user , post = post_title)
+# 	if not l:
+# 		post_title.number_likes += 1
+# 		like = likes.objects.create(user=request.user , post = post_title)
+# 		post_title.save()
+# 	else:
+# 		post_title.number_likes -= 1
+# 		like = likes.objectls.filter(user=request.user , post = post_title)
+# 		like.delete()
+# 		post_title.save()
+# 	return post(request, post_title.slug)
+
+def like(request):
+	if request.method == 'POST':
+		l = likes.objects.filter(user= request.user, post = post_title)
+		if not l:
+			post_title.number_likes += 1
+			like = likes.objects.create(user=request.user, post = post_title)
+			post_title.save()
+			cx = "Unlike"
+		else:
+			post_title.number_likes -= 1
+			like = likes.objects.filter(user=request.user , post= post_title)
+			like.delete()
+			post_title.save()
+			cx = "Like"
+	print "blah blha"
+	ctx = {'likes_count':post_title.number_likes , 'x':cx}
+	return HttpResponse(json.dumps(ctx), content_type='application/json')

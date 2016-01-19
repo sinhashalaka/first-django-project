@@ -11,10 +11,35 @@
         <div class = "bodypart">
         <p style = "color : black">{{posts.content}}</p>
         </div>
-  <form action="/like_post/" method="get">
+  <!-- <form  method="Post" id="like">{% csrf_token %}
   <div class = "button">
-  <input type= "submit" value={{x}} onclick="like_post" id="id1" >+ {{posts.number_likes}}</input>
+  <input type= "Submit" value={{x}}>+ {{posts.number_likes}}</input>
   </div>
-  </form>
+  </form> -->
+  <div class="button">
+  <input type = "button" value = {{x}} id="like">+ <span id = "demo_id">{{posts.number_likes}}</span></input>
+  <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+  <script>
+$("#like").on("click", function(){
+      $.ajax({
+               type: "POST",
+               url: "{% url "like" %}",
+               data: {'csrfmiddlewaretoken': '{{ csrf_token }}'},
+               dataType: "json",
+               success: function(response) {
+                      document.getElementById("like").value= response.x;
+                      document.getElementById("demo_id").innerHTML = response.likes_count;
+                },
+                error: function(rs, e) {
+                       alert(rs.responseText);
+                }
+          }); 
+    })
+</script>
+  </div>
+
+
+
+
 
 {% endblock %}
