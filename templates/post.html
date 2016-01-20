@@ -1,6 +1,4 @@
 {% extends 'basefile.html' %}
-
-
 {% block shalaka %}
 <form action="/goback/" method="get">
 <div class="button">
@@ -11,16 +9,13 @@
         <div class = "bodypart">
         <p style = "color : black">{{posts.content}}</p>
         </div>
-  <!-- <form  method="Post" id="like">{% csrf_token %}
-  <div class = "button">
-  <input type= "Submit" value={{x}}>+ {{posts.number_likes}}</input>
-  </div>
-  </form> -->
-  <div class="button">
-  <input type = "button" value = {{x}} id="like">+ <span id = "demo_id">{{posts.number_likes}}</span></input>
+
+  {% if usr.is_authenticated %}
   <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+    <div class="button">
+  <input type = "button" value = {{x}} id="like">+ <span id = "demo_id">{{posts.number_likes}}</span></input>
   <script>
-$("#like").on("click", function(){
+$("#like").click(function(){
       $.ajax({
                type: "POST",
                url: "{% url "like" %}",
@@ -31,15 +26,19 @@ $("#like").on("click", function(){
                       document.getElementById("demo_id").innerHTML = response.likes_count;
                 },
                 error: function(rs, e) {
-                       alert(rs.responseText);
+                      alert("Login first");
+                       //alert(rs.responseText);
                 }
           }); 
     })
 </script>
-  </div>
-
-
-
-
-
+</div>
+{% else %}
+<form action = "/ret/" method = "get">
+<div class="button">
+<input type="submit" value = {{x}} >+<span>{{posts.number_likes}}</span>
+</div>
+</form>
+{% endif %}
+  
 {% endblock %}

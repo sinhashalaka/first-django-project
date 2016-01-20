@@ -6,6 +6,7 @@ from blog.models import Admin
 from blog.models import Data
 from blog.models import likes
 from django.contrib.auth.models import User
+from django.contrib.auth.models import AnonymousUser
 from django.shortcuts import get_object_or_404
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth import authenticate , login ,logout
@@ -48,12 +49,15 @@ def post(request, slug):
 	global post_title
 	post = get_object_or_404(Data, slug=slug)
 	post_title = post
-	l = likes.objects.filter(post = post, user = request.user)
-	if not l:
-		return render(request,'post.html',{'posts':post , 'x':"Like"})
-	else :
-		return render(request,'post.html',{'posts':post , 'x':"Unlike"})
-	return render(request, 'post.html', {'posts':post , 'x':"Like"})
+	if request.user.is_authenticated():
+		l = likes.objects.filter(post = post, user = request.user)
+		if not l:
+			return render(request,'post.html',{'posts':post , 'x':"Like" , 'usr':request.user})
+		else :
+			return render(request,'post.html',{'posts':post , 'x':"Unlike" , 'usr':request.user})
+		return render(request, 'post.html', {'posts':post , 'x':"Like" , 'usr':request.user})
+	else:
+		return render(request,'post.html',{'posts':post , 'x':"Like" , 'usr':request.user})
 
 def contact(request):
 	return render(request,'contact.html')
@@ -116,6 +120,14 @@ def goback(request):
 def forgot(request):
 	return render(request,'passwordreset.html')
 
+def suggest(request):
+	if request.method=='POST':
+		data = Data.objects.filter(title__icontains = query)
+		#return render(request,'list.html',{'data':data})
+	print "hihi"
+	ctx = {'data':data}
+	return HttpResponse(json.dumps(ctx) , content_type='application/json')
+
 # def like_post(request):
 # 	l = likes.objects.filter(user = request.user , post = post_title)
 # 	if not l:
@@ -129,20 +141,28 @@ def forgot(request):
 # 		post_title.save()
 # 	return post(request, post_title.slug)
 
+def ret(request):
+	return render(request,'file.html')
+
 def like(request):
 	if request.method == 'POST':
-		l = likes.objects.filter(user= request.user, post = post_title)
-		if not l:
-			post_title.number_likes += 1
-			like = likes.objects.create(user=request.user, post = post_title)
-			post_title.save()
-			cx = "Unlike"
-		else:
-			post_title.number_likes -= 1
-			like = likes.objects.filter(user=request.user , post= post_title)
-			like.delete()
-			post_title.save()
-			cx = "Like"
-	print "blah blha"
-	ctx = {'likes_count':post_title.number_likes , 'x':cx}
-	return HttpResponse(json.dumps(ctx), content_type='application/json')
+		print request.user
+		print request.user.is_authenticated()
+		if request.user.is_authenticated():
+			l = likes.objects.filter(user= request.user, post = post_title)
+			if not l:
+				post_title.number_likes += 1
+				like = likes.objects.create(user=request.user, post = post_title)
+				post_title.save()
+				cx = "Unlike"
+			else:
+				post_title.number_likes -= 1
+				like = likes.objects.filter(user=request.user , post= post_title)
+				like.delete()
+				post_title.save()
+				cx = "Like"
+			ctx = {'likes_count':post_title.number_likes , 'x':cx}
+			return HttpResponse(json.dumps(ctx), content_type='application/json')
+		else :
+			return render(request,'file.html')
+		
