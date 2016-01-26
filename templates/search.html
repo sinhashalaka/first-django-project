@@ -1,9 +1,11 @@
 {% extends 'basefile.html' %}
+{% block link %}
+<a href= "{% url "log" %}">{{x}}</a>&nbsp &nbsp
+{% endblock %}
 {% block shalaka %}
 <form action="/reach/" method="get">
 	<div class = "button">
-		<input type= "submit" value="reach" name="back"></input>
-		
+		<input type= "submit" value="reach" name="back"></input>	
 	</div>
 	<div class="bodypart">
 
