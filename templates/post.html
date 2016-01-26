@@ -1,15 +1,15 @@
 {% extends 'basefile.html' %}
-{% block shalaka %}
-<form action="/goback/" method="get">
-<div class="button">
-<input type = "submit" name="bt" value ="home"></input>
- </div>
- </form>
-        <p style="color : white ;font-size:25px" >{{posts.title}} </p>        
-        <div class = "bodypart">
-        <p style = "color : black">{{posts.content}}</p>
-        </div>
 
+{% block link %}
+<a href= "{% url "log" %}">{{y}}</a>&nbsp &nbsp
+{% endblock %}
+{% block shalaka %}
+
+     <b><u><p style="color : white ;font-size:25px" >{{posts.title}} </p></u></b>     
+<div class = "bodypart5">
+        <p style="font-family:courier; color : black ;font-size:25px">{{posts.content}}</p>
+        <br><br>
+        <span>No of comments : {{posts.number_comments}}</span>
   {% if usr.is_authenticated %}
   <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
     <div class="button">
@@ -40,5 +40,62 @@ $("#like").click(function(){
 </div>
 </form>
 {% endif %}
+
+<div class = "forcomment">
+  <div class = "details">
+ <span style = "font-family:courier ; color : black ; font-size:25px"> 
+ <p style="font-family:courier; color : black">{{request.user}} : 
+  <input type="text" id = "comm"/>
+  <input type="button" id="comment" value = "comment"/> 
+</p>
+</div>
+ <!-- 
+ <ul id = "lst">
+  <img src = "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcT5ct-wdpyEdEkqRT8orWI31dbOMCDpM0PKvQ9BsFuhEomDMKw9Hw" height="50px" width="50px">
+  <br>
+
+ </ul>
+
+-->
+
+
+<ul id="lst" class="cl">
   
+  {% for com in comment %}
+  <div class= "dv">
+  <li><strong>{{com.user}}</strong> : {{com.text}}</li>
+  Posted on : {{com.date_created | date}} {{com.date_created | time}}
+  </div>
+  {% endfor %}
+  
+</ul>
+
+</div>
+
+  <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+  <script>
+  $("#comment").click(function(){
+    comm = document.getElementById("comm").value
+    $.ajax({
+        type : "POST",
+        url : "{% url "commenting" %}",
+        data: {"comment":comm, 'csrfmiddlewaretoken':'{{ csrf_token }}'},
+        dataType: "json",
+
+        success: function(response){
+             console.log(response);
+            $("#comm").val('');
+            $("#lst").prepend("<div class = 'dv'><li><strong>"+response.usr+" : </strong><span>"+response.tex+"</span><br>Posted on : "+response.date+"</li></div>")
+            // $("#lst").prepend('<div id="mydiv"><strong>'+response.usr +'</strong>: '+ response.tex+'</div>').addClass("dv");
+
+        },
+        error: function(rs,e) {
+           // console.log(response);
+          alert("login first");
+        }
+
+    });
+  })
+  </script>
+</div>
 {% endblock %}
