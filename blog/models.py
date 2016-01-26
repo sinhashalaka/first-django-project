@@ -28,17 +28,26 @@ class Data(models.Model):
         return reverse('views.post', kwargs={'slug':self.slug,},)
 
     def save(self , *args , **kwargs):
-        if self.slug == "":
-            self.slug=self.title
+        if not self.slug:
+            self.slug=slugify(self.title)
         super(Data, self).save(*args, **kwargs)
 
     class Meta:
         verbose_name = "Entry"
         verbose_name_plural="Entries"
-        ordering=["-modified"]
+        ordering=["-created"]
 
 class likes(models.Model):
     user = models.ForeignKey(User)
     post = models.ForeignKey(Data)
+
+class comment(models.Model):
+    user = models.ForeignKey(User)
+    post = models.ForeignKey(Data)
+    text = models.CharField(max_length=1000)
+    date_created = models.DateField(auto_now_add=True)
+
+    def __str__(self):
+        return "%s %s" % (self.user, self.date_created)
 
 
